@@ -1,5 +1,5 @@
-import { StatusBar } from 'expo-status-bar';
 import React, {useState, useEffect} from 'react';
+
 import { 
   StyleSheet, 
   View, 
@@ -8,13 +8,11 @@ import {
   TextInput, 
   TouchableOpacity, 
   Text,
-  Animated,
-  Keyboard
+  Animated
 } from 'react-native';
 
 export default function App() {
   const [offset] = useState(new Animated.ValueXY({x: 0, y: 95}));
-  const [logo] = useState(new Animated.ValueXY({x: 200, y: 200}));
 
   useEffect(()=>{
     Animated.spring(offset.y,{
@@ -28,7 +26,7 @@ export default function App() {
     <KeyboardAvoidingView style={styles.container}>
       <View style={styles.viewLogo}> 
         <Animated.Image
-          source={require('./assets/img/logo.png')} style={{ width: logo.x,height: logo.y,}}
+          source={require('./assets/img/logo.png')} style={styles.img}
         />
       </View>
 
@@ -59,7 +57,7 @@ export default function App() {
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.btnSubmit}>
-          <Text>Criar Conta</Text>
+          <Text style={styles.btnText}>Criar Conta</Text>
         </TouchableOpacity>
       </Animated.View>
     </KeyboardAvoidingView>
@@ -78,13 +76,16 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-
+  img:{
+    width: 200,
+    height: 200
+  },
   viewInput:{
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     width: '90%',
-    marginBottom: 20
+    marginBottom: 30
   },
   button:{
     backgroundColor: '#FFF',
@@ -104,7 +105,9 @@ const styles = StyleSheet.create({
     height: 40,
     borderRadius: 7,
     marginBottom: 10,
-
+  },
+  btnText:{
+    color: '#FFF',
   }
   
 });
